@@ -1,16 +1,15 @@
 package com.google.sps.data;
+public class Event  {
 
-public final class Event  {
+  public int month;
+  public int day;
+  public String  title;
+  public String link;
 
-  private final int month;
-  private final int day;
-  private final String  title;
-  private final String link;
-
-  public Event(int month, int day, String title,  String link) {
-    this.month = month;
-    this.day = day;
-    this.title = title;
-    this.link = link;
+  public void setData(int m, int d, String t,  String l) {
+    this.month = m;
+    this.day = d;
+    this.title = t;
+    this.link = l;
   }
 }
