@@ -21,7 +21,7 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
-import com.google.sps.data.Comment;
+import com.google.sps.data.Event;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,77 +35,41 @@ import javax.servlet.http.HttpServletResponse;
 
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
-@WebServlet("/data")
+@WebServlet("/events")
 public class DataServlet extends HttpServlet {
+  private List<Event>events;
+  private List<Long>months;
+
+  months.add(1);
+  months.add(2);
+  month.add(3);
 
   @Override
   public void init(){
-    names = new ArrayList<>();
-    names.add("Obi");
+      events = new ArrayList<>();
+      conference = new Event(1, 3, "WIT Connect", "https://womenimpacttech.com/wit-connect?gclid=Cj0KCQjwyPbzBRDsARIsAFh15JZ_ZMVKQbajsNq9qSF3p5ioDy4UYTLZwH-rrSeBHWerZOc-i5AQ3IgaAvJ8EALw_wcB");
+      networking = new Event(1, 25, "Networking Event", "https://www.eventbrite.com/e/women-in-tech-networking-happy-hour-with-special-guest-upfront-ventures-tickets-93828614913");
 
-    messages = new ArrayList<>();
-    messages.add("Hello! How are you");
-
-    allComments = new ArrayList<>();
-    Scanner scanner = new Scanner(getServletContext().getResourceAsStream(
-        "/WEB-INF/pit---april-2018-scheduled-traffic-report-reformatted.csv"));
-    while (scanner.hasNextLine()) {
-      String line = scanner.nextLine();
-      String[] cells = line.split(",");
-
-      Integer seats = Integer.valueOf(cells[0]);
-      Integer day = Integer.valueOf(cells[1]);
-
-      pitFly.put(seats, day);
-    }
-    scanner.close();
+      events.add(conference);
+      events.add(networking);
   }
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String name = names.get(0);
+      for(int i = 1; i < months.length(); i ++){
+          for(int j = 0; j < events.length(); j++ ){
+              if(i == 1){
+                  response.setContentType("text/html;");
+                  response.getWriter().println("<h1>January</h1>");
+              }
+              if (events[j].month == i){
+                  response.setContentType("text/html;");
+                  response.getWriter().println(events[j].day + " " + events[j].title + " "+ <a href = events[j].link> More Information</a>);
+              }
+          }
 
-    Query query = new Query("Comment");
-
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    PreparedQuery results = datastore.prepare(query);
-    for (Entity entity : results.asIterable()) {
-      long id = entity.getKey().getId();
-      String whatSaid = (String) entity.getProperty("Comment");
-      String mood = (String) entity.getProperty("Mood");
-      //long timestamp = (Long) entity.getProperty("timestamp");
-      
-      Comment newComment = new Comment(id, whatSaid, mood);
-      allComments.add(newComment);
+      }
     }
-    response.getWriter().println(allComments);
 
-
-    String json = convertToJsonUsingGson(allComments);
-    response.setContentType("application/json;");
-    response.getWriter().println(json);
-
-  }
-
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-      String word = request.getParameter("Comment");
-      String mood = request.getParameter("Mood");
-      
-      Entity commentEntity = new Entity("Comment");
-      commentEntity.setProperty("Comment", word);
-      commentEntity.setProperty("Mood", mood);
-
-      DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-      datastore.put(commentEntity);
-
-      response.sendRedirect("/index.html");
-  }
-
-
-  static String convertToJsonUsingGson( List<Comment> words) {
-    Gson gson = new Gson();
-    String json = gson.toJson(words);
-    return json;
   }
 }
