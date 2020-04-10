@@ -41,10 +41,14 @@ public class Chat3Servlet extends HttpServlet {
     PreparedQuery results = datastore.prepare(query);
     List<Comment> comments = new ArrayList<>();
     for (Entity entity : results.asIterable()) {
-      String comment = (String) entity.getProperty("comment");
-      long timestamp = (long) entity.getProperty("timestamp");
-      Comment comment1 = new Comment(comment, timestamp);
-      comments.add(comment1);
+      long chat = (long) entity.getProperty("chat"); 
+      if (chat == 3)
+      {
+        String comment = (String) entity.getProperty("comment");
+        long timestamp = (long) entity.getProperty("timestamp");
+        Comment comment1 = new Comment(comment, timestamp, chat);
+        comments.add(comment1);
+      }
     }
 
     Gson gson = new Gson();
@@ -55,9 +59,11 @@ public class Chat3Servlet extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {    
     String s = request.getParameter("comment");
     long timestamp = System.currentTimeMillis();
+    long chat = 3; 
     Entity commentEntity = new Entity("Comment");
     commentEntity.setProperty("comment", s);
     commentEntity.setProperty("timestamp", timestamp);
+    commentEntity.setProperty("chat", chat);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(commentEntity);
     response.sendRedirect("/chat3.html");
