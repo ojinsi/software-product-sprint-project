@@ -1,8 +1,10 @@
 #content {
   margin-left: auto;
   margin-right: auto;
-  width: 650px;
+  width: 850px;
 }
+
+
 #sidebar a{
   color: #0000cc;
   text-decoration: none;
@@ -15,6 +17,7 @@
 #top_row h3{
   font-size: 1.125em;
   font-weight: bold;
+  color: #0000cc
   
 }
 #bio{
@@ -39,6 +42,8 @@ div.container {
   text-align: center;
   padding: 10px 20px;
 }
+
+
 
 
 

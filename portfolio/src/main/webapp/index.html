@@ -5,29 +5,69 @@
     <title>Women in Technology Hub</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
-    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <!-- <script src="https://www.gstatic.com/charts/loader.js"></script> -->
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
   </head>
-  <!--
+
   <body onload="postComments()" data-gr-c-s-loaded="true">
     <div id= "content">
      <div id = "top_row">
         <header>
         <h1> Women in Technology Hub </h1>
-        <h3> Upcoming Events </h3>
     </header>
-    <button onclick="getEventsUsingArrowFunctions()">See events!</button>
-    <div id = "events-container">
-
-    </div> --> 
+    <div id = "right_events", class="col s12 m6">
+        <div class = "card grey darken-1">
+            <span class="card-title center">Upcoming Events</span>
+                <a class="waves-effect waves-light btn" onclick="getEventsUsingArrowFunctions()" >See events!</a>
+                <div id = "events-container"></div>
+        </div>
+    </div> 
     <p></p>
+
     <h2>Chat Forums</h2> 
     <h4>Connect with women in tech from all across the globe</h4>
-    <a href=/chat1.html>Internship Opportunities</a>
-    <p>Need to find an internship and/or talk to recruiters? Ask away!</p>
-    <a href=/chat2.html>Technical Questions</a>
-    <p>Working on a project and need some debugging help? Join the chat!</p>
-    <a href=/chat3.html>Female In Tech Conferences</a>
-    <p>Want to converse with other females in tech by attending a conference? Find out more here!</p>
+
+    <div class="card">
+        <div class="card-image">
+          <img src="images/recruiting.jpg">
+          <span class="card-title bold-text"><a href=/chat1.html>Internship Opportunities</a></span>
+        </div>
+        <div class="card-content">
+          <p>Need to find an internship and/or talk to recruiters? Ask away</p>
+        </div>
+        <div class="card-action">
+          <a href="/chat1.html">Go to Chat</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-image">
+          <img src="images/ghc.jpg">
+          <span class="card-title"><a href=/chat2.html>Techincal Question?</a></span>
+        </div>
+        <div class="card-content">
+          <p>Working on a project and need some debugging help? Join the chat!</p>
+        </div>
+        <div class="card-action">
+          <a href="/chat2.html">Go to Chat</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-image">
+          <img src="images/WIT.jpg">
+          <span class="card-title"><a href=/chat3.html>Females in Tech Conference</a></span>
+        </div>
+        <div class="card-content">
+          <p>Want to converse with other females in tech by attending a conference? Find out more here!</p>
+        </div>
+        <div class="card-action">
+          <a href="/chat3.html">Go to Chat</a>
+        </div>
+    </div>
 
     <div id = "polaroid">
     </div>
@@ -37,5 +77,6 @@
 
     </div>
     </div>
+    <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
   </body>
 </html>

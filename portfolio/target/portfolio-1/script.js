@@ -58,7 +58,7 @@ function addQuoteToDom(event) {
  */
 function getEventsUsingArrowFunctions() {
   fetch('/events').then(response => response.text()).then((event) => {
-    document.getElementById('event-container').innerText = event;
+    document.getElementById('events-container').innerText = event;
   });
 }
 

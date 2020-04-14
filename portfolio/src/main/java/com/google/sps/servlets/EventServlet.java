@@ -48,8 +48,10 @@ public class EventServlet extends HttpServlet {
       months.add(1);
       months.add(2);
       months.add(3);
+      events[0] = new Event();
       events[0].setData(1, 3, "WIT Connect", "https://womenimpacttech.com/wit-connect?gclid=Cj0KCQjwyPbzBRDsARIsAFh15JZ_ZMVKQbajsNq9qSF3p5ioDy4UYTLZwH-rrSeBHWerZOc-i5AQ3IgaAvJ8EALw_wcB");
-      events[1].setData(1, 25, "Networking Event", "https://www.eventbrite.com/e/women-in-tech-networking-happy-hour-with-special-guest-upfront-ventures-tickets-93828614913");
+      events[1] = new Event();
+      events[1].setData(1, 23, "Networking Event", "https://www.eventbrite.com/e/women-in-tech-networking-happy-hour-with-special-guest-upfront-ventures-tickets-93828614913");
     //   events.add(conference);
     //   events.add(networking);
   }
@@ -59,19 +61,18 @@ public class EventServlet extends HttpServlet {
       for(int i = 1; i < months.size(); i ++){
           if(i == 1){
                   response.setContentType("text/html;");
-                  response.getWriter().println("<h1>January</h1>");
+                  response.getWriter().println("April");
           }
           for(int j = 0; j < events.length; j++ ){
               Event current = events[j];
               if (current.month == i){
                   response.setContentType("text/html;");
-                  response.getWriter().print(current.day + " ");
-                  response.getWriter().print(current.title + " ");
-                  response.getWriter().print("<a href = current.link>More Information</a>");
+                  response.getWriter().print(current.day + "rd " );
+                  response.getWriter().print(current.title  + " ");
+                  response.getWriter().println("<a href = " + current.link + ">" + "More Information" + "</a>");
               }
           }
 
       }
     }
-
   }
